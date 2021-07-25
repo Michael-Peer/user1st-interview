@@ -9,10 +9,11 @@ function App() {
 
   /**
    * 
-   * Scripty code
+   *     ****Scripty code*****
    * 
    *   window.addEventListener('message', ev=> {   
-          if(ev.data) {
+   *
+   *      if(ev.data) {
           var iframeEl = document.getElementById('search-iframe')
           let images = Array.from(document.getElementsByTagName('img'))
           images = images.filter(image => image.alt.includes(ev.data))
@@ -20,8 +21,16 @@ function App() {
           iframeEl.contentWindow.postMessage(JSON.stringify(images), 'http://localhost:3000');
           }
       })
-   * 
-   * 
+  
+
+
+          const iframe = document.createElement("iframe");
+          iframe.src = 'http://localhost:3000/'; 
+          iframe.width = '600'
+          iframe.height = '600'
+          iframe.id = 'search-iframe'
+          document.body.appendChild(iframe);
+        
    * **/
 
 
@@ -34,7 +43,7 @@ function App() {
 
 
   const onUserSeach = (term) => {
-    if(!term.trim()) return
+    if (!term.trim()) return
     window.parent.postMessage(term, 'https://www.ikea.co.il/catalogue/Workspaces')
   }
 
